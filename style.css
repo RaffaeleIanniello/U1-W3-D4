@@ -1,0 +1,5 @@
+.titlen {border: 20px; border-color: blue; background-color: greenyellow; color: black; text-align: center;}
+.colorsnn {color: red;}
+table {width: 90%; height: 500px; margin: 0 auto;}
+td {text-align: center; font-size: 250%; cursor: pointer; background-color: aquamarine; color: black; border-radius: 9px;}
+textarea { color: blue; background-color: black; overflow: visible; font-weight: bold; width: 90%;}

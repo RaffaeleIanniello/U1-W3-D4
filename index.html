@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Tombola</title>
+    <script type="text/javascript">
+        var orig;
+var hist;
+function init(){
+    hist=new Array();
+    orig=new Array();
+    For( var ii=1;ii<=76;ii++)
+    {orig.push(ii);
+    }
+}
+function BlinkNode(celnode, times, millis){
+    this.celnode=celnode;
+    this.times=times;
+    this.millis=millis;
+    var self=this;
+    this.blink = function()
+    {if (self.times % 2 == 0) self.celnode.className='on';
+else self.celnode.className='blink';
+if (self.times > 0)
+{
+    self.times --;
+    selfTimeout(self.blink, self.millis);
+}
+else self=null;
+    }
+}
+
+function selectNr(nn)
+{
+    var celnode=document.getElementById("nr"+nn);
+    celnode.className="on";
+    var idx=searchNr(orig,nn);
+    if (idx >= 0) orig.splice(idx,1);
+    idx=searchNr(hist, nn);
+    if(idx == -1) hist.push(nn);
+    var cc=new BlinkNode(celnode, 9, 300);
+    cc.blink();
+    dumpHist();
+}
+function resetNr(nn){
+    var celnode=document.getElementById("nr"+nn);
+celnode.className=" ";
+var idx=searchNr(hist,nn);
+if (idx>=0) hist.splice(idx,1);
+idx=searchNr(orig, nn);
+if (idx==-1) orig.push(nn);
+dumpHist();
+}
+function searchNr(aa,nn){
+    for(var ii=0;ii<aa.length;ii++)
+    {if (aa[ii]=nn) return ii;
+    }
+    return -1;
+}
+function dumpHist()
+{
+    var ii,ss= " ";
+    for (ii=0;ii<hist.length;ii++)
+    {
+        ss+hist[ii]+" ";
+    }
+    document.getElementById("dumplist").innerHTML=ss;
+}
+function clicca(anode)
+{
+    var id=anode.id;
+    var nn= id.match(/\d+/)[0]:
+    if (searchNr(hist, nn) == -1)
+    {
+        selectNr(nn);
+    }
+    else {
+        resetNr(nn);
+    }
+    }
+function extractRandom()
+{
+    var dbg;
+    var rr=1;
+    if (orig.length<=0) return ;
+    while (rr>=1) rr=Math.random();
+    var idx=Math.floor(rr * orig.length);
+    var nn=orig[idx];
+}
+if(searchNr(hist,nn) ==-1)
+{
+    selectNr(nn);
+}
+function manageKeyB()
+{
+    extractRandom();
+}
+function tombola_writeIn()
+{
+    var xx,yy,nr;
+    for (yy=0;yy<9;yy++)
+    {
+        document.writeln("<tr>");
+        for(xx=0;xx<10;xx++)
+        {
+            nr=yy*10+xx+1;
+            document.writeln("</tr>");
+
+        }
+    }
+}
+</script>
+</head>
+<body>
+    <h1 id="tombit">CLASSICA TOMBOLA NON NAPOLETANA</h1>
+    <table>
+        <script type="text/javascript">tombola_writeIn();</script>
+        <tbody>
+            <tr>
+                <td id="nr1" onclick="clicca(this)">1</td>
+                <td id="nr2" onclick="clicca(this)">2</td>
+                <td id="nr3" onclick="clicca(this)">3</td>
+                <td id="nr4" onclick="clicca(this)">4</td>
+                <td id="nr5" onclick="clicca(this)">5</td>
+                <td id="nr6" onclick="clicca(this)">6</td>
+                <td id="nr7" onclick="clicca(this)">7</td>
+                <td id="nr8" onclick="clicca(this)">8</td>
+                <td id="nr9" onclick="clicca(this)">9</td>
+                <td id="nr10" onclick="clicca(this)">10</td>
+            </tr>
+            <tr>
+                <td id="nr11" onclick="clicca(this)">11</td>
+                <td id="nr12" onclick="clicca(this)">12</td>
+                <td id="nr13" onclick="clicca(this)">13</td>
+                <td id="nr14" onclick="clicca(this)">14</td>
+                <td id="nr15" onclick="clicca(this)">15</td>
+                <td id="nr16" onclick="clicca(this)">16</td>
+                <td id="nr17" onclick="clicca(this)">17</td>
+                <td id="nr18" onclick="clicca(this)">18</td>
+                <td id="nr19" onclick="clicca(this)">19</td>
+                <td id="nr20" onclick="clicca(this)">20</td>
+
+            </tr>
+            <tr>
+                <td id="nr21" onclick="clicca(this)">21</td>
+                <td id="nr22" onclick="clicca(this)">22</td>
+                <td id="nr23" onclick="clicca(this)">23</td>
+                <td id="nr24" onclick="clicca(this)">24</td>
+                <td id="nr25" onclick="clicca(this)">25</td>
+                <td id="nr26" onclick="clicca(this)">26</td>
+                <td id="nr27" onclick="clicca(this)">27</td>
+                <td id="nr28" onclick="clicca(this)">28</td>
+                <td id="nr29" onclick="clicca(this)">29</td>
+                <td id="nr30" onclick="clicca(this)">30</td>
+
+            </tr>
+            <tr>
+                <td id="nr31" onclick="clicca(this)">31</td>
+                <td id="nr32" onclick="clicca(this)">32</td>
+                <td id="nr33" onclick="clicca(this)">33</td>
+                <td id="nr34" onclick="clicca(this)">34</td>
+                <td id="nr35" onclick="clicca(this)">35</td>
+                <td id="nr36" onclick="clicca(this)">36</td>
+                <td id="nr37" onclick="clicca(this)">37</td>
+                <td id="nr38" onclick="clicca(this)">38</td>
+                <td id="nr39" onclick="clicca(this)">39</td>
+                <td id="nr40" onclick="clicca(this)">40</td>
+
+            </tr>
+            <tr>
+                <td id="nr41" onclick="clicca(this)">41</td>
+                <td id="nr42" onclick="clicca(this)">42</td>
+                <td id="nr43" onclick="clicca(this)">43</td>
+                <td id="nr44" onclick="clicca(this)">44</td>
+                <td id="nr45" onclick="clicca(this)">45</td>
+                <td id="nr46" onclick="clicca(this)">46</td>
+                <td id="nr47" onclick="clicca(this)">47</td>
+                <td id="nr48" onclick="clicca(this)">48</td>
+                <td id="nr49" onclick="clicca(this)">49</td>
+                <td id="nr50" onclick="clicca(this)">50</td>
+
+            </tr>
+            <tr>
+                <td id="nr51" onclick="clicca(this)">51</td>
+                <td id="nr52" onclick="clicca(this)">52</td>
+                <td id="nr53" onclick="clicca(this)">53</td>
+                <td id="nr54" onclick="clicca(this)">54</td>
+                <td id="nr55" onclick="clicca(this)">55</td>
+                <td id="nr56" onclick="clicca(this)">56</td>
+                <td id="nr57" onclick="clicca(this)">57</td>
+                <td id="nr58" onclick="clicca(this)">58</td>
+                <td id="nr59" onclick="clicca(this)">59</td>
+                <td id="nr60" onclick="clicca(this)">60</td>
+
+            </tr>
+            <tr>
+                <td id="nr61" onclick="clicca(this)">61</td>
+                <td id="nr62" onclick="clicca(this)">62</td>
+                <td id="nr63" onclick="clicca(this)">63</td>
+                <td id="nr64" onclick="clicca(this)">64</td>
+                <td id="nr65" onclick="clicca(this)">65</td>
+                <td id="nr66" onclick="clicca(this)">66</td>
+                <td id="nr67" onclick="clicca(this)">67</td>
+                <td id="nr68" onclick="clicca(this)">68</td>
+                <td id="nr69" onclick="clicca(this)">69</td>
+                <td id="nr70" onclick="clicca(this)">70</td>
+                <tr>
+                    <td id="nr71" onclick="clicca(this)">71</td>
+                    <td id="nr72" onclick="clicca(this)">72</td>
+                    <td id="nr73" onclick="clicca(this)">73</td>
+                    <td id="nr74" onclick="clicca(this)">74</td>
+                    <td id="nr75" onclick="clicca(this)">75</td>
+                    <td id="nr76" onclick="clicca(this)">76</td>
+
+                </tr>
+             </tr>
+
+        </tbody>
+    </table>
+    <div class="container">
+    <h1></h1>
+    <div id="tombola">
+    </div>
+    <div id="addNumbers"></div>
+   <div>
+    <h3 class="colorsnn"> REFRESH NUMBERS</h3>
+    <button class="buttonC"> Referesh Number</button>
+    </div>
+
+    
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
